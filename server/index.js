@@ -23,29 +23,6 @@ router.get('/api/stock',  function (req, res) {
 	});
 });
 
-//patch is not returning anything with postman
-router.patch('/api/stocks/:stockId', function(req, res, _id){
-	Product.findById(_id, function(err, docs){
-if (err){
-	console.log(err)
-}
-res.send(docs)
-	})
-
-})
-
-router.post('/api/stoks/', function(req, res){
-const small = new Product(req.body);
-small.save(function(err, data){
-	if (err){
-		console.log(err)
-	} else
-	res.send(data)
-})
-})
-
-
-
 
 app.listen(PORT, () => {
 	console.log(`listening on http://localhost:${PORT}`)

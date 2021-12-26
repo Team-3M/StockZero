@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment'
-const Produit = () => (
+const Product = () => (
   <div className="product">
 
 
