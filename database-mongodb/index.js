@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongoUri = 'mongodb://localhost/blogmodo';
+const mongoUri = 'mongodb://localhost/produit';
 mongoose.Promise = global.Promise
 
 mongoose.connect(mongoUri,{ useNewUrlParser: true, useUnifiedTopology: true },() => {

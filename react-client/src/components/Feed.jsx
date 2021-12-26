@@ -1,12 +1,19 @@
 import React from 'react';
-import sample_data from '../sample_data.js';
-import moment from 'moment'
 
 
-const Feed = ({changeView, Blogs}) => (
-	<div className="feed">
-		
-	</div>
+
+
+const Feed = () => (
+	<div className="create">
+    name of the product  :<input type="text" />
+    type :<input type="text" />
+    added at :<input type="text" />
+    quantity:<input type="text" />
+<div>
+	<button>submit</button>
+</div>
+</div>
+   
 );
 
 export default Feed;

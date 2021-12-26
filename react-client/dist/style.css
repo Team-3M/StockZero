@@ -206,8 +206,8 @@ button {
   font-size: 1.9em;
   margin-right: auto;
   margin-left: 10px;
-  font-family: 'Francois One';
-  color: #ffffff;
+  font-family: "Francois One";
+  color: black;
 }
 
 .main {
@@ -227,7 +227,7 @@ button {
 
 .nav-selected {
   padding: 5px;
-  color: white;
+  color: black;
   font-weight: bold;
   margin-right: 5px;
   font-size: 1.1em;
@@ -248,3 +248,24 @@ button {
 	width: 750px;
 }
 
+#search {
+  box-sizing:border-box;
+    display:inline;
+    width: 50%;
+    border: 3px solid currentColor;
+    padding: calc(var(--size-bezel) * 1.5) var(--size-bezel);
+    color: currentColor;
+    background: transparent;
+    border-radius: var(--size-radius)
+}
+#button-holder{
+  background-color:#f1f1f1;
+  border-top:thin solid #e5e5e5;
+  box-shadow:1px 1px 1px 1px #e5e5e5;
+  cursor:pointer;
+  float:left;
+  height:27px;
+  margin:11px 0 0 0;
+  text-align:center;
+  width:50px;
+}
