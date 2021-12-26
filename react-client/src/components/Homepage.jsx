@@ -4,24 +4,35 @@ var Homepage = () => (
 	<div>
 		<div>
 
-			<table style="width:100%">
-				<tr>
-					<th>Company</th>
-					<th>Contact</th>
-					<th>Country</th>
-				</tr>
-				<tr>
-					<td>Alfreds Futterkiste</td>
-					<td>Maria Anders</td>
-					<td>Germany</td>
-				</tr>
-				<tr>
-					<td>Centro comercial Moctezuma</td>
-					<td>Francisco Chang</td>
-					<td>Mexico</td>
-				</tr>
-			</table>
+		<table className='table' style={{"borderWidth":"2px", 'borderColor':"#aaaaaa", 'borderStyle':'solid'}} width={'100%'}>
+
+
+                <thead>
+                <tr >
+
+                    <th>Id</th>
+                    <th>Type</th>
+                    <th>Inventory</th>
+                    <th>Last Update</th>
+                    <th>Created At</th>
+					<th>Notes</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>test</td>
+                        <td>test2</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                </tbody>
+            </table>
 
 		</div>
 	</div>
 )
+
+export default Homepage

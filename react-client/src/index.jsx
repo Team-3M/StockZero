@@ -7,6 +7,7 @@ import Feed from './components/Feed.jsx';
 import Productlist from './components/Productlist.jsx'
 import Create from './components/Create.jsx'
 import Update from './components/Update.jsx'
+import Homepage from './components/Homepage.jsx'
 import axios from 'axios'
 import { create } from 'underscore';
 
@@ -23,7 +24,12 @@ class App extends React.Component {
 		this.renderView = this.renderView.bind(this)
 		this.changeView = this.changeView.bind(this);
 	}
+componentDidMount (){
+this.setState({
+	page: 'pageHome'
+})
 
+}
 
 	changeView(view) {
 		this.setState({
@@ -38,7 +44,10 @@ class App extends React.Component {
 		else if (page === 'pageCreate') {
 			return <Create />
 		} else if (page==='pageUpdate')
-			return <Update />
+			{return <Update />}
+			else if (page ==='pageHome'){
+				return <Homepage />
+			}
 	}
 	render() {
 		return (
