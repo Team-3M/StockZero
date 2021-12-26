@@ -1,10 +1,11 @@
 const db  = require('./index.js');
-const Produit = require('./Produit.js');
+const Product = require('./Product.js');
 
 
 
-const insertSampleBlogs = function(produits) {
-  Blog.create(produits)
+
+const insertProduct = function() {
+  Product.create()
     .then(() => {
       console.log("Database seeded successfully");
     })

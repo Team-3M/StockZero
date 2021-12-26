@@ -2,7 +2,7 @@ const express = require('express');
 var router = express.Router();
 
 var mongoose = require('mongoose');
-const Produit = require('../database-mongodb/Produit.js');
+const Product = require('../database-mongodb/Product.js');
 const app = express();
 
 const PORT = 3000;
@@ -14,18 +14,18 @@ app.use("/", router)
 
 router.get('/api/stock',  function (req, res) {
 	// TODO - your code here!
-	Produit.find((err, Produit) => {
+	Product.find((err, Product) => {
 		if (err) {
 			console.log(err)
 
 		};
-		res.json(Produit)
+		res.json(Product)
 	});
 });
 
 //patch is not returning anything with postman
 router.patch('/api/stocks/:stockId', function(req, res, _id){
-	Produit.findById(_id, function(err, docs){
+	Product.findById(_id, function(err, docs){
 if (err){
 	console.log(err)
 }
@@ -35,7 +35,7 @@ res.send(docs)
 })
 
 router.post('/api/stoks/', function(req, res){
-const small = new Produit(req.body);
+const small = new Product(req.body);
 small.save(function(err, data){
 	if (err){
 		console.log(err)
