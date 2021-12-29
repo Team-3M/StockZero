@@ -8,8 +8,8 @@ import Productlist from './components/Productlist.jsx'
 import Create from './components/Create.jsx'
 import Update from './components/Update.jsx'
 import Homepage from './components/Homepage.jsx'
-import axios from 'axios'
-import { create } from 'underscore';
+
+
 
 
 class App extends React.Component {
@@ -26,7 +26,7 @@ class App extends React.Component {
 	}
 componentDidMount (){
 this.setState({
-	page: 'pageHome'
+	page: 'pageAll'
 })
 
 }
@@ -73,9 +73,7 @@ this.setState({
             Update a   product
           </button>
 		  <input type="text"  id="search" placeholder='enter the name of the product' />
-		  <div id='button-holder'>
-
-</div>
+		  
 
 	   </div>
 	   <div className="main">

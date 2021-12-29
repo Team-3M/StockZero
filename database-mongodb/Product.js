@@ -6,10 +6,15 @@ const db = require('./index.js');
 const productSchema = new mongoose.Schema({
 	name: String,
 	type: String,
-	createdAt: Date,
+	price: Number,
+	createdAt: {
+		type: Date, default: new Date
+	},
 	updatedAt: Date,
-	stock: Number,
-	note: String
+	inventory: Number,
+	note: {
+		type: String, default: ""
+	}
 }
 );
 
