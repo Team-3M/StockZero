@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css?family=Francois+One|PT+Serif:400,400i,700,700i');
+
+body {
+  font-family: 'PT Serif', sans-serif;
+  margin: 0px;
+  color: #2C3E50;
+  background-color: #ECF0F1;
+  font-size: 1.1em;
+}
+
+h2 {
+  color: #2C3E50;
+}
+
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+  font-family: 'PT Serif', sans-serif;
+  color: #ECF0F1;
+  background-color: #E74C3C;
+}
+
+
+
+.logo {
+  font-weight: bold;
+  font-size: 1.9em;
+  margin-right: auto;
+  margin-left: 10px;
+  font-family: "Francois One";
+  color: black;
+}
+
+.main {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.nav {
+  background-color: #3498DB;
+  margin: 0px;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-family: 'Francois One';
+}
+
+.nav-selected {
+  padding: 5px;
+  color: black;
+  font-weight: bold;
+  margin-right: 5px;
+  font-size: 1.1em;
+}
+
+.nav-unselected {
+  padding: 5px;
+  margin-right: 5px;
+  font-size: 1.1em;
+}
+
+.feed {
+  padding: 0px 10% 0px 10%;
+}
+
+#img {
+	height: 500px;
+	width: 750px;
+}
+
+#search {
+  box-sizing:border-box;
+    display:inline;
+    width: 50%;
+    border: 3px solid currentColor;
+    padding: calc(var(--size-bezel) * 1.5) var(--size-bezel);
+    color: currentColor;
+    background: transparent;
+    border-radius: var(--size-radius)
+}
+#button-holder{
+  background-color:#f1f1f1;
+  border-top:thin solid #e5e5e5;
+  box-shadow:1px 1px 1px 1px #e5e5e5;
+  cursor:pointer;
+  float:left;
+  height:27px;
+  margin:11px 0 0 0;
+  text-align:center;
+  width:50px;
+}
+
+table {
+	border-collapse: collapse;
+	border-color: #3498DB;
+	border-style: solid;
+	border-width: 2px;
+  }
+
+  tr {
+	border-bottom: 1pt solid black;
+  }
