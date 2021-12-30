@@ -10,7 +10,9 @@ const productSchema = new mongoose.Schema({
 	createdAt: {
 		type: Date, default: new Date
 	},
-	updatedAt: Date,
+	updatedAt: {
+		type: Date, default: new Date
+	},
 	inventory: Number,
 	note: {
 		type: String, default: ""
