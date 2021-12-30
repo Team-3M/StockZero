@@ -7,4 +7,8 @@ productRouter
 .route('/api/stocks/')
 .post(productController.createOne)
 
+productRouter
+.route('/products')
+.get(productController.retrieve)
+
 module.exports = productRouter

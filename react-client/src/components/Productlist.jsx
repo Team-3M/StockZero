@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Productlist = () => (
+const Productlist = ({ allProducts }) => (
 	<div>
 		<h4> list of all the product </h4>
 		<div>
@@ -10,7 +10,7 @@ const Productlist = () => (
 
 				<thead>
 					<tr >
-						<th>Id</th>
+
 						<th>Name</th>
 						<th>Type</th>
 						<th>Inventory</th>
@@ -22,9 +22,20 @@ const Productlist = () => (
 				</thead>
 				<tbody>
 
-					<tr>
-						
-					</tr>
+					{allProducts.map((product, item) => {
+						return (
+							<tr key={item}>
+								<th>{product.name}</th>
+								<th>{product.type}</th>
+								<th>{product.inventory}</th>
+								<th>{product.price}</th>
+								<th>{product.updatedAt}</th>
+								<th>{product.createdAt}</th>
+								<th>{product.note}</th>
+							</tr>
+						)
+					})}
+
 
 				</tbody>
 			</table>
