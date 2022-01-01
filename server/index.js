@@ -23,6 +23,19 @@ router.get('/api/stock',  function (req, res) {
 	});
 });
 
+router.put('/api/stocks/:stockId', function (req, res) {
+	try {
+		const id = req.params.id;
+		const modification = req.body; // the modification requested from the user
+		const updated_Product = { new: true }; //to pass the updated Product directly
+		const result = Product.findByIdAndUpdate(id, modification, updated_Product);
+		res.send(result)
+	}
+	catch (err) {
+		console.error(err)
+	}
+});
+
 
 app.listen(PORT, () => {
 	console.log(`listening on http://localhost:${PORT}`)

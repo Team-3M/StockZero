@@ -12,4 +12,5 @@ const Create =()=> (
 </div>
 )
 
-export default Create
+export default Create;
+
