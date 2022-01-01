@@ -16,4 +16,18 @@ exports.retrieve = function (req, res) {
 		console.log(data)
 	})
 };
+exports.updateOne = function (req, res) {
+	Product.findOneAndUpdate({ name: req.params.name }, req.body, {
+		new: true
+	})
+		.then(() => {
+			return Product.find()
+		})
+		.then(data => {
+			res.send(data);
+		})
+		.catch((e) => {
+			console.log(e);
+		})
+};
 

@@ -19,21 +19,51 @@ class App extends React.Component {
 			product: [],
 			page: '',
 			allProducts: [],
+			name:"",
+			type:"",
+			price:0,
+			inventory:0,
+			note:''
 		}
 
 
 		this.renderView = this.renderView.bind(this)
 		this.changeView = this.changeView.bind(this);
+		this.handleChange= this.handleChange.bind(this)
+		this.submitChange = this.submitChange(this)
 	}
 	componentDidMount() {
 		this.setState({
 			page: 'pageAll'
 		})
-		axios.get('/products').then(({ data }) => {
+		axios.get('/api/stock').then(({ data }) => {
 
 			this.setState({
 				allProducts: data
 			})
+		})
+	}
+
+	handleChange(e){
+		console.log(e.target.value);
+		this.setState({
+			[e.target.name] : e.target.value
+		})
+
+	}
+
+	submitChange(){
+		const  {name, type, price, inventory, note}=this.state;
+		axios.put('/api/create',{name,type,price,inventory,note})
+		.then((response)=>{
+			console.log(response)
+			this.setState({
+				allProducts: [...this.state.allProducts,data]
+			})
+
+		})
+		.catch((err)=>{
+			console.log(err.response)
 		})
 	}
 
@@ -45,10 +75,10 @@ class App extends React.Component {
 
 
 	renderView() {
-		const { page, product, allProducts } = this.state;
+		const { page, product, allProducts} = this.state;
 		if (page === 'pageAll') { return <Productlist product={product} allProducts={allProducts} /> }
 		else if (page === 'pageCreate') {
-			return <Create />
+			return <Create handleChange={this.handleChange} submitChange={this.submitChange}/>
 		} else if (page === 'pageUpdate') { return <Update /> }
 		else if (page === 'pageHome') {
 			return <Homepage />
