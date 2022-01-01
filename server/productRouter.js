@@ -4,11 +4,15 @@ var productController = require ('./productController')
 
 
 productRouter
-.route('/api/stocks/')
+.route('/api/add')
 .post(productController.createOne)
 
 productRouter
-.route('/products')
+.route('/api/stock')
 .get(productController.retrieve)
+
+productRouter
+.route('/api/update/:name')
+.put(productController.updateOne)
 
 module.exports = productRouter
