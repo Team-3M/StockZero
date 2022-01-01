@@ -13,7 +13,7 @@ exports.createOne = function (req, res) {
 exports.retrieve = function (req, res) {
 	Product.find({}).then((data) => {
 		res.send(data)
-		console.log(data)
+		
 	})
 };
 exports.updateOne = function (req, res) {
