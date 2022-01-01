@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Productlist = ({ allProducts }) => (
+const Productlist = ({ allProducts, currentproductUpdate }) => (
 	<div>
 		<h4> list of all the product </h4>
 		<div>
@@ -24,7 +24,7 @@ const Productlist = ({ allProducts }) => (
 
 					{allProducts.map((product, item) => {
 						return (
-							<tr key={item}>
+							<tr key={item} onClick={()=>{currentproductUpdate(product)}}>
 								<th>{product.name}</th>
 								<th>{product.type}</th>
 								<th>{product.inventory}</th>
