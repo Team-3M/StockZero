@@ -35,6 +35,7 @@ class App extends React.Component {
 		this.currentproductUpdate = this.currentproductUpdate.bind(this)
 		this.handleUpdate = this.handleUpdate.bind(this)
 
+
 	}
 	componentDidMount() {
 		this.setState({
@@ -53,8 +54,10 @@ class App extends React.Component {
 		this.setState({
 			[e.target.name]: e.target.value
 		})
-
+		
 	}
+
+
 
 	submitChange() {
 		const { name, type, price, inventory, note } = this.state;
@@ -77,19 +80,19 @@ class App extends React.Component {
 		this.setState({
 			currentproduct: object
 		})
-		console.log(object)
+
 
 
 	}
-	handleUpdate(object) {
-		axios.put('/api/update/' + object.name, object).then((
-			{ data }) => (
-				this.setState({
-					currentproduct: data
-				})))
-				.catch((err)=>{
-					console.log(err)
-				})
+	handleUpdate() {
+		const { name, type, price, inventory, note , currentproduct} = this.state;
+		axios.put('/api/update/' + currentproduct.name, { name, type, price, inventory, note })
+			.then(({ data }) => (
+				console.log(data)
+			))
+			.catch((err) => {
+				console.log(err)
+			})
 	};
 
 	changeView(view) {
@@ -104,7 +107,7 @@ class App extends React.Component {
 		if (page === 'pageAll') { return <Productlist product={product} allProducts={allProducts} currentproductUpdate={this.currentproductUpdate} /> }
 		else if (page === 'pageCreate') {
 			return <Create handleChange={this.handleChange} submitChange={this.submitChange} />
-		} else if (page === 'pageUpdate') { return <Update currentproduct={currentproduct} handleChange={this.handleChange} handleUpdate={this.handleUpdate} /> }
+		} else if (page === 'pageUpdate') { return <Update currentproduct={currentproduct} handleChange={this.handleChange} handleUpdate={this.handleUpdate}/> }
 		else if (page === 'pageHome') {
 			return <Homepage />
 		}
