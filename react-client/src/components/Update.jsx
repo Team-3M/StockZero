@@ -1,46 +1,34 @@
-import e from 'express';
-import React from 'react';
-class Update extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        term: "",
-      };
-      this.onChange = this.onChange.bind(this);
-      this.update = this.update.bind(this);
-    }
-  
-    componentDidUpdate(prevProps) {
-        if (prevProps !== this.props) {
-          console.log('product updated successfully')
-        } else {
-          console.log("Oops updated failed!!")
-        }
-      }
+import React from"react";
 
-    onChange(e) {
-      this.setState({
-        term: e.target.value,
-      });
-    }
-  
-    update(){
-        e.preventDefault();
-      this.props.onSearch(this.state.term);
-    }
-  
-    render() {
-      return (
-        <form onSubmit={handleSubmit}>
-        <div>
-        <label> Update Product </label>        
-          <input value={this.state.term} onChange={this.onChange} />
-          <button onClick={this.update}> Save to Update  </button>
-        </div>
-        </form>
-      );
-    }
-  }
+const Update = ({ currentproduct, handleChange, handleUpdate }) => (
+  <div className="update">
+    <div>   {currentproduct.name}  - {currentproduct.type} - {currentproduct.inventory} - {currentproduct.price} - {currentproduct.note}    </div>
+    <form>
+    <div>
+    <label htmlFor="name">  New product's Name  : </label>
+      <input type="text" id='name' value={currentproduct.name} onChange={handleChange} ></input>
+    </div>
+    <div>
+    <label htmlFor="Type ">  New product's Type  : </label>
+      <input type="text" id='type' value={currentproduct.type} onChange={handleChange} ></input>
+    </div>
+    <div>
+    <label htmlFor="stock ">  New product's Stock  : </label>
+      <input type="number" id='stock' value={currentproduct.inventory} onChange={handleChange} ></input>
+    </div>
+    <div>
+    <label htmlFor="price ">  New product's Price : </label>
+      <input type="number" id='price' value={currentproduct.price} onChange={handleChange} ></input>
+    </div>
+    <div>
+    <label htmlFor="Type ">  New product's Note : </label>
+      <input type="text" id='note' value={currentproduct.note} onChange={handleChange} ></input>
+    </div>
+    </form>
+    <div>
+      <button className='updateClass' type='submit' onClick={handleUpdate}> Update this product </button>
+    </div>
+  </div>
+);
 
 export default Update ;
-

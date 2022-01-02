@@ -17,18 +17,22 @@ class App extends React.Component {
 			product: [],
 			page: '',
 			allProducts: [],
-			name:"",
-			type:"",
-			price:0,
-			inventory:0,
-			note:''
+			name: "",
+			type: "",
+			price: 0,
+			inventory: 0,
+			note: '',
+			currentproduct: {}
 		}
 
 
 		this.renderView = this.renderView.bind(this)
 		this.changeView = this.changeView.bind(this);
-		this.handleChange= this.handleChange.bind(this)
-		this.submitChange = this.submitChange(this)
+		this.handleChange = this.handleChange.bind(this)
+		this.submitChange = this.submitChange.bind(this)
+		this.currentproductUpdate = this.currentproductUpdate.bind(this)
+		this.handleUpdate = this.handleUpdate.bind(this)
+
 	}
 	componentDidMount() {
 		this.setState({
@@ -41,28 +45,49 @@ class App extends React.Component {
 		})
 	}
 
-	handleChange(e){
-		console.log(e.target.value);
+	handleChange(e) {
+
 		this.setState({
-			[e.target.name] : e.target.value
+			[e.target.name]: e.target.value
 		})
 
 	}
 
-	submitChange(){
-		const  {name, type, price, inventory, note}=this.state;
-		axios.put('/api/create',{name,type,price,inventory,note})
-		.then((response)=>{
-			console.log(response)
-			this.setState({
-				allProducts: [...this.state.allProducts,data]
+	submitChange() {
+		const { name, type, price, inventory, note } = this.state;
+		axios.post('/api/add', { name, type, price, inventory, note })
+			.then(({ data }) => {
+
+				this.setState({
+					allProducts: [...this.state.allProducts, data]
+				})
+
 			})
-
-		})
-		.catch((err)=>{
-			console.log(err.response)
-		})
+			.catch((err) => {
+				console.log(err)
+			})
+		this.changeView('pageAll')
 	}
+
+	currentproductUpdate(object) {
+
+		this.setState({
+			currentproduct: object
+		})
+		console.log(object)
+
+
+	}
+	handleUpdate(object) {
+		axios.put('/api/update/' + object.name, object).then((
+			{ data }) => (
+				this.setState({
+					currentproduct: data
+				})))
+				.catch((err)=>{
+					console.log(err)
+				})
+	};
 
 	changeView(view) {
 		this.setState({
@@ -72,11 +97,11 @@ class App extends React.Component {
 
 
 	renderView() {
-		const { page, product, allProducts} = this.state;
-		if (page === 'pageAll') { return <Productlist product={product} allProducts={allProducts} /> }
+		const { page, product, allProducts, currentproduct } = this.state;
+		if (page === 'pageAll') { return <Productlist product={product} allProducts={allProducts} currentproductUpdate={this.currentproductUpdate} /> }
 		else if (page === 'pageCreate') {
-			return <Create handleChange={this.handleChange} submitChange={this.submitChange}/>
-		} else if (page === 'pageUpdate') { return <Update /> }
+			return <Create handleChange={this.handleChange} submitChange={this.submitChange} />
+		} else if (page === 'pageUpdate') { return <Update currentproduct={currentproduct} handleChange={this.handleChange} handleUpdate={this.handleUpdate} /> }
 		else if (page === 'pageHome') {
 			return <Homepage />
 		}
