@@ -1,15 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import axios from 'axios'
 
 
-import Feed from './components/Feed.jsx';
 import Productlist from './components/Productlist.jsx'
 import Create from './components/Create.jsx'
 import Update from './components/Update.jsx'
 import Homepage from './components/Homepage.jsx'
-import axios from 'axios'
-import { create } from 'underscore';
 
 
 class App extends React.Component {
@@ -17,63 +15,67 @@ class App extends React.Component {
 		super();
 		this.state = {
 			product: [],
-			page: 'pageAll',
-			name: '',
-			note: '',
-			types: '',
-			stock: 0,
-			price: 0,
-			currentProduct: {}
+			page: '',
+			allProducts: [],
+			name:"",
+			type:"",
+			price:0,
+			inventory:0,
+			note:''
 		}
+
 
 		this.renderView = this.renderView.bind(this)
 		this.changeView = this.changeView.bind(this);
-		this.handleSubmit = this.handlesubmit.bind(this);
-		this.handleupdate = this.handleupdate.bind(this)
+		this.handleChange= this.handleChange.bind(this)
+		this.submitChange = this.submitChange(this)
 	}
 	componentDidMount() {
 		this.setState({
-			page: 'pageHome'
+			page: 'pageAll'
+		})
+		axios.get('/api/stock').then(({ data }) => {
+			this.setState({
+				allProducts: data
+			})
+		})
+	}
+
+	handleChange(e){
+		console.log(e.target.value);
+		this.setState({
+			[e.target.name] : e.target.value
 		})
 
 	}
-	
+
+	submitChange(){
+		const  {name, type, price, inventory, note}=this.state;
+		axios.put('/api/create',{name,type,price,inventory,note})
+		.then((response)=>{
+			console.log(response)
+			this.setState({
+				allProducts: [...this.state.allProducts,data]
+			})
+
+		})
+		.catch((err)=>{
+			console.log(err.response)
+		})
+	}
+
 	changeView(view) {
 		this.setState({
 			page: view
 		})
 	}
 
-	handleupdate() {
-		const Product = this.state.currentProduct;
-		Product.name = this.state.name;
-		Product.stock = this.state.stock;
-		Product.note = this.state.note;
-		Product.price = this.state.price;
-		Product.types = this.state.types.split('');
-		axios.put('/api/stocks/' + Product.id, Product).then((
-			{ data }) => (
-			this.setState({
-				Product: data
-			})))
-	};
-
-	handlesubmit() {
-		let { name, types, stock, note, price } = this.state;
-		types = types.split('');
-		axios.post('/api/stocks/', { name, types, stock, note, price }).then(({ data }) => {
-			let Product = this.state.product.push(data)
-			this.setState({
-				Products: [...this.state.Product, data]
-			})
-		})
-	};
 
 	renderView() {
-		const { page, product } = this.state;
-		if (page === 'pageAll') { return <Productlist product={product} /> }
+		const { page, product, allProducts} = this.state;
+		if (page === 'pageAll') { return <Productlist product={product} allProducts={allProducts} /> }
 		else if (page === 'pageCreate') {
-			return <Create />
+			return <Create handleChange={this.handleChange} submitChange={this.submitChange}/>
 		} else if (page === 'pageUpdate') { return <Update /> }
 		else if (page === 'pageHome') {
 			return <Homepage />
@@ -100,12 +102,10 @@ class App extends React.Component {
 						? 'nav-selected'
 						: 'nav-unselected'}
 						onClick={() => this.changeView('pageUpdate')}>
-						Update a product
+						Update a   product
 					</button>
 					<input type="text" id="search" placeholder='enter the name of the product' />
-					<div id='button-holder'>
 
-					</div>
 
 				</div>
 				<div className="main">
