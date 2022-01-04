@@ -22,7 +22,7 @@ const Create =({handleChange, submitChange})=> (
 </div>
 <div>
 	<label htmlFor="name">Note</label><br />
-	<input type="text" name='note' onChange={handleChange} required />
+	<input type="text" name='note' onChange={handleChange}  />
 </div>
 
 

@@ -14,5 +14,6 @@ productRouter
 productRouter
 .route('/api/update/:name')
 .put(productController.updateOne)
+.delete(productController.deleteOne)
 
 module.exports = productRouter
