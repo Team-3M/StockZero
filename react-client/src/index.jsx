@@ -152,12 +152,16 @@ class App extends React.Component {
 		return (
 			<div>
 				<div className='nav'>
-					<span className='logo'>3M Project</span>
+					<br />
+					<div>
+						<bold><strong>	<span  className='logo'>  Stock Zero </span>  </strong> </bold> 
+					</div>
+					<br />
 					<button className={this.state.page === 'pageAll'
 						? 'nav-selected'
 						: 'nav-unselected'}
 						onClick={() => this.componentDidMount()}>
-						see all  product
+						The Product List
 					</button>
 					<br />
 					<button className='nav' className={this.state.page === 'pageCreate'
@@ -175,7 +179,7 @@ class App extends React.Component {
 					</button>
 
 					<br /> <br /> <br />
-					
+
 					<input type="text" id="search" placeholder='Search..' />
 
 

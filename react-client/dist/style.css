@@ -65,6 +65,11 @@ th[target] {
   background-color: grey;
 }
 
+#logo {
+  margin-right:auto;
+  
+  }
+
 btn:hover {
   opacity: 1}
 
@@ -103,13 +108,15 @@ table, th, td {
 
 .nav {
   background-color: #6fa8dc;
-  margin: 10px;
+  margin: 20px;
   padding: 10px;
   display: flex;
   align-items: center;
   font-family: 'Francois One';
   outline-style: outset;
   outline: thick ridge ;
+  float: center;
+  justify-content:space-between;
 }
 
 .nav-selected {
@@ -161,7 +168,7 @@ table, th, td {
   cursor:pointer;
   float:left;
   height:27px;
-  margin:11px 0 0 0;
+  margin: 15px;
   text-align:center;
   width: 4px;
 }
@@ -175,5 +182,17 @@ table {
 
   tr {
 	border-bottom: 1pt solid black;
-  }
 
+
+	border-right: 1pt solid black;  }
+  thead{
+	  background-color: rgb(223, 136, 60);
+
+  }
+  thead tr th {
+	  color: #e5e5e5;
+	  border-right: #000000 1pt solid;
+  }
+  tbody tr th {
+	border-right: #000000 2px solid;
+  }

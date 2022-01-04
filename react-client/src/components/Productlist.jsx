@@ -31,7 +31,7 @@ const Productlist = ({ allProducts, currentproductUpdate, changeView }) => (
 								<th>{moment(product.updatedAt).format("DD-MM-YYYY")}</th>
 								<th>{moment(product.createdAt).format("DD-MM-YYYY")}</th>
 								<th>{product.note}</th>
-								<th><button onClick={()=>changeView("product")} >Details</button></th>
+								<th><button  onClick={()=>changeView("product")} > Details </button></th>
 							</tr>
 						)
 					})}
