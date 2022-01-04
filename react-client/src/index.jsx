@@ -4,10 +4,12 @@ import $ from 'jquery';
 import axios from 'axios'
 
 
+
 import Productlist from './components/Productlist.jsx'
 import Create from './components/Create.jsx'
 import Update from './components/Update.jsx'
 import Homepage from './components/Homepage.jsx'
+
 
 
 class App extends React.Component {
@@ -110,26 +112,34 @@ class App extends React.Component {
 		return (
 			<div>
 				<div className='nav'>
-					<span className='logo'>MMM</span>
-					<button className={this.state.page === 'pageAll'
+				<div className="header">
+				<strong><span className='logo'> Stock Zero </span> </strong>	 <br />  <br /><br />
+				</div>
+				<br />  <br /><br />
+					<button className='nav'  className={this.state.page === 'pageAll'
 						? 'nav-selected'
 						: 'nav-unselected'}
 						onClick={() => this.changeView('pageAll')}>
-						see all  product
+						The product's List 
 					</button>
-					<button className={this.state.page === 'pageCreate'
+					<br />
+					<button className='nav' className={this.state.page === 'pageCreate'
 						? 'nav-selected'
 						: 'nav-unselected'}
 						onClick={() => this.changeView('pageCreate')}>
-						Add a  product
+						Add a new product
 					</button>
-					<button className={this.state.view === 'pageUpdate'
+					<br />
+					<button className='nav' className={this.state.view === 'pageUpdate'
 						? 'nav-selected'
 						: 'nav-unselected'}
 						onClick={() => this.changeView('pageUpdate')}>
-						Update a   product
+						Update a product
 					</button>
-					<input type="text" id="search" placeholder='enter the name of the product' />
+
+					<br /> <br /> <br />
+					
+					<input type="text" id="search" placeholder='Search..' />
 
 
 				</div>

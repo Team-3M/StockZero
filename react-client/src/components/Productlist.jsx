@@ -2,15 +2,13 @@ import React from 'react'
 
 const Productlist = ({ allProducts, currentproductUpdate }) => (
 	<div>
-		<h4> list of all the product </h4>
+		<h4> The  List of all the Products </h4>
 		<div>
 
 			<table className='table' width={'100%'}>
 
-
 				<thead>
 					<tr >
-
 						<th>Name</th>
 						<th>Type</th>
 						<th>Inventory</th>
