@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment'
-const Product = ({changeView, currentproduct }) => (
+const Product = ({changeView, currentproduct, handleDelete }) => (
 	<div className="product">
 
 		<table>
@@ -25,7 +25,7 @@ const Product = ({changeView, currentproduct }) => (
 			</tbody>
 		</table>
 		<button onClick={()=>changeView('pageUpdate')}>Update</button>
-		<button>Delete</button>
+		<button onClick={()=>{handleDelete(currentproduct.id)}}>Delete</button>
 	</div>
 )
 

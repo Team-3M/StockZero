@@ -12,8 +12,11 @@ productRouter
 .get(productController.retrieve)
 
 productRouter
-.route('/api/update/:name')
+.route('/api/update/:id')
 .put(productController.updateOne)
+
+productRouter
+.route('/api/delete/:id')
 .delete(productController.deleteOne)
 
 module.exports = productRouter
