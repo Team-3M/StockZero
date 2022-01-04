@@ -9,6 +9,7 @@ import Productlist from './components/Productlist.jsx'
 import Create from './components/Create.jsx'
 import Update from './components/Update.jsx'
 import Homepage from './components/Homepage.jsx'
+import Product from './components/Product.jsx';
 
 
 
@@ -19,6 +20,7 @@ class App extends React.Component {
 			product: [],
 			page: '',
 			allProducts: [],
+			id: 0,
 			name: "",
 			type: "",
 			price: 0,
@@ -34,6 +36,7 @@ class App extends React.Component {
 		this.submitChange = this.submitChange.bind(this)
 		this.currentproductUpdate = this.currentproductUpdate.bind(this)
 		this.handleUpdate = this.handleUpdate.bind(this)
+
 
 	}
 	componentDidMount() {
@@ -51,24 +54,33 @@ class App extends React.Component {
 
 		this.setState({
 			[e.target.name]: e.target.value
-		})
+		});
+
 
 	}
 
+
+
 	submitChange() {
-		const { name, type, price, inventory, note } = this.state;
-		axios.post('/api/add', { name, type, price, inventory, note })
-			.then(({ data }) => {
+		const { id, name, type, price, inventory, note } = this.state;
+		if (name && type && price && inventory) {
+			this.setState({
+				id: id + 1
+			})
+			axios.post('/api/add', { id, name, type, price, inventory, note })
+				.then(({ data }) => {
 
-				this.setState({
-					allProducts: [...this.state.allProducts, data]
+					this.setState({
+						allProducts: [...this.state.allProducts, data]
+					})
+
 				})
-
-			})
-			.catch((err) => {
-				console.log(err)
-			})
-		this.changeView('pageAll')
+				.catch((err) => {
+					console.log(err)
+				})
+			this.changeView('pageAll')
+		}
+		else alert("please fill all fields")
 	}
 
 	currentproductUpdate(object) {
@@ -76,20 +88,44 @@ class App extends React.Component {
 		this.setState({
 			currentproduct: object
 		})
-		console.log(object)
+
 
 
 	}
-	handleUpdate(object) {
-		axios.put('/api/update/' + object.name, object).then((
-			{ data }) => (
-				this.setState({
-					currentproduct: data
-				})))
-				.catch((err)=>{
+	handleUpdate() {
+		const product = this.state.currentproduct;
+		product.name = this.state.name;
+		product.type = this.state.type;
+		product.price = this.state.price;
+		product.inventory = this.state.inventory;
+		product.note = this.state.note;
+
+		if (!product.name || !product.type || !product.price || !product.inventory) {
+			alert("please fill all fields")
+		}
+		else
+			axios.put('/api/update/' + product.id, product)
+				.then(({ data }) => {
+					this.setState({
+						allProducts: data
+					})
+
+				})
+				.catch((err) => {
 					console.log(err)
 				})
 	};
+
+	handleDelete(index) {
+
+		axios.delete('/api/delete/' + index)
+			.then(({ data }) => (
+				console.log(data)
+			))
+			.catch((err) => {
+				console.log(err)
+			})
+	}
 
 	changeView(view) {
 		this.setState({
@@ -98,29 +134,30 @@ class App extends React.Component {
 	}
 
 
+
 	renderView() {
 		const { page, product, allProducts, currentproduct } = this.state;
-		if (page === 'pageAll') { return <Productlist product={product} allProducts={allProducts} currentproductUpdate={this.currentproductUpdate} /> }
+		if (page === 'pageAll') { return <Productlist product={product} allProducts={allProducts} currentproductUpdate={this.currentproductUpdate} changeView={this.changeView} /> }
 		else if (page === 'pageCreate') {
 			return <Create handleChange={this.handleChange} submitChange={this.submitChange} />
-		} else if (page === 'pageUpdate') { return <Update currentproduct={currentproduct} handleChange={this.handleChange} handleUpdate={this.handleUpdate} /> }
+		} else if (page === 'pageUpdate') { return <Update currentproduct={currentproduct} handleChange={this.handleChange} handleUpdate={this.handleUpdate} currentproductUpdate={this.currentproductUpdate} /> }
 		else if (page === 'pageHome') {
 			return <Homepage />
+		}
+		else if (page === 'product') {
+			return <Product changeView={this.changeView} currentproduct={currentproduct} handleDelete={this.handleDelete} />
 		}
 	}
 	render() {
 		return (
 			<div>
 				<div className='nav'>
-				<div className="header">
-				<strong><span className='logo'> Stock Zero </span> </strong>	 <br />  <br /><br />
-				</div>
-				<br />  <br /><br />
-					<button className='nav'  className={this.state.page === 'pageAll'
+					<span className='logo'>3M Project</span>
+					<button className={this.state.page === 'pageAll'
 						? 'nav-selected'
 						: 'nav-unselected'}
-						onClick={() => this.changeView('pageAll')}>
-						The product's List 
+						onClick={() => this.componentDidMount()}>
+						see all  product
 					</button>
 					<br />
 					<button className='nav' className={this.state.page === 'pageCreate'

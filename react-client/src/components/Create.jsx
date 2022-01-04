@@ -27,10 +27,8 @@ const Create =({handleChange, submitChange})=> (
 </div>
 <br />
 <div>
-	<label htmlFor="name"> New Product's Note</label><br />
-	<textarea type="text" name='note' onChange={handleChange} required  rows="5" cols="65">
-	</textarea> 
-	
+	<label htmlFor="name">Note</label><br />
+	<input type="text" name='note' onChange={handleChange}  />
 </div>
 <br></br>
 

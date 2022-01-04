@@ -1,6 +1,7 @@
 import React from 'react'
-
-const Productlist = ({ allProducts, currentproductUpdate }) => (
+import moment from 'moment'
+import Product from './Product.jsx'
+const Productlist = ({ allProducts, currentproductUpdate, changeView }) => (
 	<div>
 		<h4> The  List of all the Products </h4>
 		<div>
@@ -27,9 +28,10 @@ const Productlist = ({ allProducts, currentproductUpdate }) => (
 								<th>{product.type}</th>
 								<th>{product.inventory}</th>
 								<th>{product.price}</th>
-								<th>{product.updatedAt}</th>
-								<th>{product.createdAt}</th>
+								<th>{moment(product.updatedAt).format("DD-MM-YYYY")}</th>
+								<th>{moment(product.createdAt).format("DD-MM-YYYY")}</th>
 								<th>{product.note}</th>
+								<th><button onClick={()=>changeView("product")} >Details</button></th>
 							</tr>
 						)
 					})}

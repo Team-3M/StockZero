@@ -13,17 +13,27 @@ exports.createOne = function (req, res) {
 exports.retrieve = function (req, res) {
 	Product.find({}).then((data) => {
 		res.send(data)
-		
+
 	})
 };
-exports.updateOne = function (req, res) {
-	Product.findOneAndUpdate({ name: req.params.name }, req.body, {
-		new: true
+
+exports.retrieveOne = function(req, res){
+	Product.find({id: req.params.id})
+	.then(({data})=>{
+		res.send(data)
 	})
+	.catch((e)=>{
+		console.log(e)
+	})
+
+}
+exports.updateOne = function (req, res) {
+	Product.findOneAndUpdate({ id: req.params.id }, req.body)
 		.then(() => {
 			return Product.find()
 		})
 		.then(data => {
+			console.log(data)
 			res.send(data);
 		})
 		.catch((e) => {
@@ -31,3 +41,12 @@ exports.updateOne = function (req, res) {
 		})
 };
 
+exports.deleteOne = function (req, res) {
+	Product.findOneAndDelete({ id: req.params.id })
+	.then((data)=>{
+		res.send(data)
+	})
+		.catch((e) => {
+			console.log(e);
+		})
+};
