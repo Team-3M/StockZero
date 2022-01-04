@@ -39,7 +39,7 @@ button {
 }
 
 .nav {
-  background-color: #3498DB;
+  background-color: #0b5202;
   margin: 0px;
   padding: 10px;
   display: flex;
@@ -95,11 +95,23 @@ button {
 
 table {
 	border-collapse: collapse;
-	border-color: #3498DB;
+	border-color: #000000;
 	border-style: solid;
 	border-width: 2px;
   }
 
   tr {
 	border-bottom: 1pt solid black;
+	border-right: 1pt solid black;
+  }
+  thead{
+	  background-color: #0b5202;
+
+  }
+  thead tr th {
+	  color: #e5e5e5;
+	  border-right: #000000 1pt solid;
+  }
+  tbody tr th {
+	border-right: #000000 2px solid;
   }

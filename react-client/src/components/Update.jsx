@@ -1,6 +1,6 @@
 import React from"react";
 
-const Update =({handleChange, handleUpdate, currentproduct})=> (
+const Update =({handleChange, handleUpdate, currentproduct, currentProductupdate})=> (
 
 	<div className="create">
 		<div>{currentproduct.name}--{currentproduct.type}--{currentproduct.price}--{currentproduct.inventory}--{currentproduct.note}</div>
