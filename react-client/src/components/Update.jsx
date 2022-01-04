@@ -43,13 +43,13 @@ const Update =({handleChange, handleUpdate, currentproduct, currentProductupdate
 	<br />
 	<div>
 		<label htmlFor="name"> The New Product's Note</label><br />
-		<textarea type="text" name='note' onChange={handleChange} required  rows="4" cols="87" >
+		<textarea type="text" name='note' onChange={handleChange} required  rows="4" cols="70">
 	   </textarea>
 	</div>
 	<br />
 
 
-		<button className='updateClass'  type='submit' onClick={handleUpdate}> Save to Add! </button>
+		<button className='updateClass'  type='submit' onClick={handleUpdate}> Save to Update! </button>
 
 	</div>
 	)

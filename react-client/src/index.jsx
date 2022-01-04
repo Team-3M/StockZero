@@ -36,6 +36,7 @@ class App extends React.Component {
 		this.submitChange = this.submitChange.bind(this)
 		this.currentproductUpdate = this.currentproductUpdate.bind(this)
 		this.handleUpdate = this.handleUpdate.bind(this)
+		this.handleDelete = this.handleDelete.bind(this)
 
 
 	}
@@ -104,7 +105,7 @@ class App extends React.Component {
 			alert("please fill all fields")
 		}
 		else
-			axios.put('/api/update/' + product.id, product)
+			axios.put('/api/update/' + product.name, product)
 				.then(({ data }) => {
 					this.setState({
 						allProducts: data
@@ -116,16 +117,19 @@ class App extends React.Component {
 				})
 	};
 
-	handleDelete(index) {
-
-		axios.delete('/api/delete/' + index)
-			.then(({ data }) => (
-				console.log(data)
-			))
-			.catch((err) => {
+	handleDelete(name) {
+		axios.delete('/api/delete/:name', name)
+			.then(({ data }) => {
+				return (
+					data ? alert(' product deleted successfully'):alert(' product not deleted successfully'));
+			}).then(() => {
+				this.setState({
+					view: 'pageHome'
+				})
+			}).catch((err) => {
 				console.log(err)
-			})
-	}
+			})}
+
 
 	changeView(view) {
 		this.setState({
@@ -154,7 +158,7 @@ class App extends React.Component {
 				<div className='nav'>
 					<br />
 					<div>
-						<bold><strong>	<span  className='logo'>  Stock Zero </span>  </strong> </bold> 
+						<strong>	<span className='logo'>  Stock Zero </span>  </strong> 
 					</div>
 					<br />
 					<button className={this.state.page === 'pageAll'
@@ -164,14 +168,14 @@ class App extends React.Component {
 						The Product List
 					</button>
 					<br />
-					<button className='nav' className={this.state.page === 'pageCreate'
+					<button className={this.state.page === 'pageCreate'
 						? 'nav-selected'
 						: 'nav-unselected'}
 						onClick={() => this.changeView('pageCreate')}>
 						Add a new product
 					</button>
 					<br />
-					<button className='nav' className={this.state.view === 'pageUpdate'
+					<button  className={this.state.page === 'pageUpdate'
 						? 'nav-selected'
 						: 'nav-unselected'}
 						onClick={() => this.changeView('pageUpdate')}>
