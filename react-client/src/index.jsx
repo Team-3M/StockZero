@@ -29,7 +29,7 @@ class App extends React.Component {
 			note: '',
 
 			currentproduct: {},
-			inputValue:''
+			inputValue: ''
 
 		}
 
@@ -41,9 +41,9 @@ class App extends React.Component {
 		this.currentproductUpdate = this.currentproductUpdate.bind(this)
 		this.handleUpdate = this.handleUpdate.bind(this)
 
-		this.handleDelete=this.handleDelete.bind(this)
-		this.productFilter=this.productFilter.bind(this)
-		
+		this.handleDelete = this.handleDelete.bind(this)
+		this.productFilter = this.productFilter.bind(this)
+
 
 	}
 	componentDidMount() {
@@ -58,15 +58,15 @@ class App extends React.Component {
 		})
 
 	}
-    
-    productFilter (event){
 
-this.setState({
-	inputValue:event.target.value
-	
-})
+	productFilter(event) {
 
-	} 
+		this.setState({
+			inputValue: event.target.value
+
+		})
+
+	}
 
 
 	handleChange(e) {
@@ -78,29 +78,31 @@ this.setState({
 
 	}
 
-	 handleDelete (index){
-		axios.delete("/api/delete/:id"+index )
-		.then(({data})=>{
-			console.log(data)
-		})
-		.catch((e)=>{
-			console.log(e)
-		})
-		
-		
-		
-		
+	handleDelete(index) {
+		axios.delete("/api/delete/:id" + index)
+			.then(({ data }) => {
+				console.log(data)
+			})
+			.catch((e) => {
+				console.log(e)
+			})
+
+
+
+
 	}
 
-    
+
 
 
 
 	submitChange() {
 		const { id, name, type, price, inventory, note } = this.state;
+		var l = this.state.allProducts.length - 1;
+
 		if (name && type && price && inventory) {
 			this.setState({
-				id: id + 1
+				id: l + 1
 			})
 			axios.post('/api/add', { id, name, type, price, inventory, note })
 				.then(({ data }) => {
@@ -160,6 +162,7 @@ this.setState({
 			.catch((err) => {
 				console.log(err)
 			})
+			this.componentDidMount()
 	}
 
 	changeView(view) {
@@ -172,7 +175,7 @@ this.setState({
 
 	renderView() {
 
-		const { page, product, allProducts, currentproduct, inputValue} = this.state;
+		const { page, product, allProducts, currentproduct, inputValue } = this.state;
 		if (page === 'pageAll') { return <Productlist product={product} allProducts={allProducts} currentproductUpdate={this.currentproductUpdate} changeView={this.changeView} productFilter={this.productFilter} inputValue={inputValue} /> }
 
 		else if (page === 'pageCreate') {

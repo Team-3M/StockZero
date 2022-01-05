@@ -5,7 +5,7 @@ const db = require('./index.js');
 var d= new Date;
 const productSchema = new mongoose.Schema({
 	id:{
-		type: Number , unique: true
+		type: Number 
 	},
 	name: String,
 	type: String,
