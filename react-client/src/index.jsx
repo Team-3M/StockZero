@@ -121,10 +121,8 @@ class App extends React.Component {
 		this.setState({
 			currentproduct: object
 		})
+	};
 
-
-
-	}
 	handleUpdate() {
 		const product = this.state.currentproduct;
 		product.name = this.state.name;
@@ -158,6 +156,7 @@ class App extends React.Component {
 			.catch((err) => {
 				console.log(err)
 			})
+			this.componentDidMount()
 	}
 
 	changeView(view) {
