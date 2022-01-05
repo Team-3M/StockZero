@@ -60,8 +60,6 @@ class App extends React.Component {
 
 	}
 
-
-
 	submitChange() {
 		const { id, name, type, price, inventory, note } = this.state;
 		if (name && type && price && inventory) {
@@ -70,11 +68,9 @@ class App extends React.Component {
 			})
 			axios.post('/api/add', { id, name, type, price, inventory, note })
 				.then(({ data }) => {
-
 					this.setState({
 						allProducts: [...this.state.allProducts, data]
 					})
-
 				})
 				.catch((err) => {
 					console.log(err)
@@ -175,14 +171,9 @@ class App extends React.Component {
 						Add a new product
 					</button>
 					<br />
-					<button  className={this.state.page === 'pageUpdate'
-						? 'nav-selected'
-						: 'nav-unselected'}
-						onClick={() => this.changeView('pageUpdate')}>
-						Update a product
-					</button>
+					
 
-					<br /> <br /> <br />
+					 <br /> <br />
 
 					<input type="text" id="search" placeholder='Search..' />
 

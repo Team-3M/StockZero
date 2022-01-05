@@ -27,9 +27,9 @@ const Product = ({changeView, currentproduct, handleDelete }) => (
 
 		<br/>
 		<br/>
-		<button class=" btn " autoFocus onClick={()=>changeView('pageUpdate')}> Update </button>
-		<br/>
-		<button  class=" btn " autoFocus  onClick={()=>{handleDelete(currentproduct.id)}}> Delete </button>
+		<button className=" btn " autoFocus onClick={()=>changeView('pageUpdate')}> Update </button>
+		
+		<button  className=" btn " autoFocus  onClick={()=>{handleDelete(currentproduct.id)}}> Delete </button>
 	</div>
 )
 
