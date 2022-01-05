@@ -16,7 +16,7 @@ productRouter
 .put(productController.updateOne)
 
 productRouter
-.route('/api/delete/:name')
+.route('/api/delete/:id')
 .delete(productController.deleteOne)
 
 module.exports = productRouter;

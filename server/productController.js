@@ -42,7 +42,7 @@ exports.updateOne = function (req, res) {
 };
 
 exports.deleteOne = function (req, res) {
-	Product.deleteOne({ name: req.params.name}, function(error) {
+	Product.deleteOne({ id: req.params.id}, function(error) {
 		if (error) {
 		 res.status(503).send({ message: "something went wrong!" });
 		} else {

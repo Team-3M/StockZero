@@ -5,7 +5,7 @@ const Update =({handleChange, handleUpdate, currentproduct, currentProductupdate
 	<div className="update">
 
 		<div>
-		
+		<fieldset>	
 		<ul>
 	<li>  The current product's Name :  {currentproduct.name}   </li>
 	<br />
@@ -17,7 +17,7 @@ const Update =({handleChange, handleUpdate, currentproduct, currentProductupdate
 	<br />
 	<li>   The current product's  Note  :  {currentproduct.note} </li>
 	</ul>
-	
+	</fieldset>
 	
 		</div> 
 		<br />
@@ -42,10 +42,10 @@ const Update =({handleChange, handleUpdate, currentproduct, currentProductupdate
 	</div>
 	<br />
 	<div>
-		<label htmlFor="name"> The New Product's Note</label><br />
+		<label htmlFor="name"> The New Product's Note </label><br />
 		<textarea type="text" name='note' onChange={handleChange} required  rows="4" cols="70">
 	   </textarea>
-	</div>
+	</div> 
 	<br />
 
 
