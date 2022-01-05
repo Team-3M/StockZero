@@ -70,7 +70,7 @@ class App extends React.Component {
 			})
 			axios.post('/api/add', { id, name, type, price, inventory, note })
 				.then(({ data }) => {
-
+					console.log(data)
 					this.setState({
 						allProducts: [...this.state.allProducts, data]
 					})
