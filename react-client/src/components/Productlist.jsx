@@ -2,6 +2,7 @@ import React from 'react'
 import moment from 'moment'
 import Product from './Product.jsx'
 
+
 const Productlist = ({ allProducts, currentproductUpdate, changeView,productFilter,inputValue }) => (
 	
 		<div>
@@ -10,15 +11,14 @@ const Productlist = ({ allProducts, currentproductUpdate, changeView,productFilt
 
 
 
-		<h4> list of all the product </h4>
+		<h4> The  List of all the Products </h4>
+
 		<div>
 
 			<table className='table' width={'100%'}>
 
-
 				<thead>
 					<tr >
-
 						<th>Name</th>
 						<th>Type</th>
 						<th>Inventory</th>
@@ -48,7 +48,7 @@ const Productlist = ({ allProducts, currentproductUpdate, changeView,productFilt
 								<th>{moment(product.updatedAt).format("DD-MM-YYYY")}</th>
 								<th>{moment(product.createdAt).format("DD-MM-YYYY")}</th>
 								<th>{product.note}</th>
-								<th><button onClick={()=>changeView("product")} >Details</button></th>
+								<th><button  onClick={()=>changeView("product")} > Details </button></th>
 							</tr>
 						)
 					})}

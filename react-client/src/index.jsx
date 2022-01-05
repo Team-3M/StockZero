@@ -4,12 +4,12 @@ import $ from 'jquery';
 import axios from 'axios'
 
 
+
 import Productlist from './components/Productlist.jsx'
 import Create from './components/Create.jsx'
 import Update from './components/Update.jsx'
 import Homepage from './components/Homepage.jsx'
 import Product from './components/Product.jsx';
-
 
 
 
@@ -40,6 +40,7 @@ class App extends React.Component {
 		this.submitChange = this.submitChange.bind(this)
 		this.currentproductUpdate = this.currentproductUpdate.bind(this)
 		this.handleUpdate = this.handleUpdate.bind(this)
+		this.handleDelete = this.handleDelete.bind(this)
 
 		this.handleDelete=this.handleDelete.bind(this)
 		this.productFilter=this.productFilter.bind(this)
@@ -51,7 +52,6 @@ class App extends React.Component {
 			page: 'pageAll'
 		})
 		axios.get('/api/stock').then(({ data }) => {
-
 			this.setState({
 				allProducts: data
 			})
@@ -78,23 +78,6 @@ this.setState({
 
 	}
 
-	 handleDelete (index){
-		axios.delete("/api/delete/:id"+index )
-		.then(({data})=>{
-			console.log(data)
-		})
-		.catch((e)=>{
-			console.log(e)
-		})
-		
-		
-		
-		
-	}
-
-    
-
-
 
 	submitChange() {
 		const { id, name, type, price, inventory, note } = this.state;
@@ -104,11 +87,9 @@ this.setState({
 			})
 			axios.post('/api/add', { id, name, type, price, inventory, note })
 				.then(({ data }) => {
-
 					this.setState({
 						allProducts: [...this.state.allProducts, data]
 					})
-
 				})
 				.catch((err) => {
 					console.log(err)
@@ -139,7 +120,7 @@ this.setState({
 			alert("please fill all fields")
 		}
 		else
-			axios.put('/api/update/' + product.id, product)
+			axios.put('/api/update/' + product.name, product)
 				.then(({ data }) => {
 					this.setState({
 						allProducts: data
@@ -151,16 +132,19 @@ this.setState({
 				})
 	};
 
-	handleDelete(index) {
-
-		axios.delete('/api/delete/' + index)
-			.then(({ data }) => (
-				console.log(data)
-			))
-			.catch((err) => {
+	handleDelete(id) {
+		axios.delete('/api/delete/:id', id)
+			.then(({ data }) => {
+				return (
+					data ? alert(' product deleted successfully'):alert(' product can not be deleted !'));
+			}).then(() => {
+				this.setState({
+					view: 'pageHome'
+				})
+			}).catch((err) => {
 				console.log(err)
-			})
-	}
+			})}
+
 
 	changeView(view) {
 		this.setState({
@@ -189,26 +173,24 @@ this.setState({
 		return (
 			<div>
 				<div className='nav'>
-					<span className='logo'>3M Project</span>
+					<br />
+					<div>
+						<strong>	<span className='logo'>  Stock Zero </span>  </strong> 
+					</div>
+					<br />
 					<button className={this.state.page === 'pageAll'
 						? 'nav-selected'
 						: 'nav-unselected'}
 						onClick={() => this.componentDidMount()}>
-						see all  product
+						The Product List
 					</button>
+					<br />
 					<button className={this.state.page === 'pageCreate'
 						? 'nav-selected'
 						: 'nav-unselected'}
 						onClick={() => this.changeView('pageCreate')}>
-						Add a  product
+						Add a new product
 					</button>
-					<button className={this.state.view === 'pageUpdate'
-						? 'nav-selected'
-						: 'nav-unselected'}
-						onClick={() => this.changeView('pageUpdate')}>
-						Update a   product
-					</button>
-
 
 
 
