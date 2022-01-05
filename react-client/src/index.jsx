@@ -205,15 +205,7 @@ class App extends React.Component {
 						onClick={() => this.changeView('pageCreate')}>
 						Add a  product
 					</button>
-					<button className={this.state.view === 'pageUpdate'
-						? 'nav-selected'
-						: 'nav-unselected'}
-						onClick={() => this.changeView('pageUpdate')}>
-						Update a   product
-					</button>
-
-
-
+					
 
 				</div>
 				<div className="main">

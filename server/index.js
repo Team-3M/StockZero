@@ -1,7 +1,7 @@
 const express = require('express');
-var router = express.Router();
-const routes = require("./productRouter")
-var bodyParser = require('body-parser');
+const router = express.Router();
+const routes = require("./productRouter");
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -20,4 +20,5 @@ app.get
 
 app.listen(PORT, () => {
 	console.log(`listening on http://localhost:${PORT}`)
-})
+});
+

@@ -42,11 +42,12 @@ exports.updateOne = function (req, res) {
 };
 
 exports.deleteOne = function (req, res) {
-	Product.findOneAndDelete({ id: req.params.id })
-	.then((data)=>{
-		res.send(data)
-	})
-		.catch((e) => {
-			console.log(e);
-		})
-};
+	Product.deleteOne({ id: req.params.id}, function(error) {
+		if (error) {
+		 res.status(503).send({ message: "something went wrong!" });
+		} else {
+		 res.status(200).send({ message: "Product deleted successfuly!" });
+		}
+	   })};
+
+	   
