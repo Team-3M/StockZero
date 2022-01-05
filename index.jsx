@@ -4,12 +4,12 @@ import $ from 'jquery';
 import axios from 'axios'
 
 
-
 import Productlist from './components/Productlist.jsx'
 import Create from './components/Create.jsx'
 import Update from './components/Update.jsx'
 import Homepage from './components/Homepage.jsx'
 import Product from './components/Product.jsx';
+
 
 
 
@@ -27,10 +27,8 @@ class App extends React.Component {
 			price: 0,
 			inventory: 0,
 			note: '',
-
 			currentproduct: {},
 			inputValue:''
-
 		}
 
 
@@ -40,11 +38,10 @@ class App extends React.Component {
 		this.submitChange = this.submitChange.bind(this)
 		this.currentproductUpdate = this.currentproductUpdate.bind(this)
 		this.handleUpdate = this.handleUpdate.bind(this)
-		this.handleDelete = this.handleDelete.bind(this)
-
-		this.handleDelete=this.handleDelete.bind(this)
+		this.handelDelete=this.handelDelete.bind(this)
 		this.productFilter=this.productFilter.bind(this)
 		
+
 
 	}
 	componentDidMount() {
@@ -52,11 +49,11 @@ class App extends React.Component {
 			page: 'pageAll'
 		})
 		axios.get('/api/stock').then(({ data }) => {
+
 			this.setState({
 				allProducts: data
 			})
 		})
-
 	}
     
     productFilter (event){
@@ -78,7 +75,21 @@ this.setState({
 
 	}
 
+	 handelDelete (index){
+		axios.delete("/api/delete/:id"+index )
+		.then(({data})=>{
+			console.log(data)
+		})
+		.catch((e)=>{
+			console.log(e)
+		})
+		
+		
+		
+		
+	}
 
+    
 	submitChange() {
 		const { id, name, type, price, inventory, note } = this.state;
 		if (name && type && price && inventory) {
@@ -87,9 +98,11 @@ this.setState({
 			})
 			axios.post('/api/add', { id, name, type, price, inventory, note })
 				.then(({ data }) => {
+
 					this.setState({
 						allProducts: [...this.state.allProducts, data]
 					})
+
 				})
 				.catch((err) => {
 					console.log(err)
@@ -120,7 +133,7 @@ this.setState({
 			alert("please fill all fields")
 		}
 		else
-			axios.put('/api/update/' + product.name, product)
+			axios.put('/api/update/' + product.id, product)
 				.then(({ data }) => {
 					this.setState({
 						allProducts: data
@@ -132,19 +145,16 @@ this.setState({
 				})
 	};
 
-	handleDelete(id) {
-		axios.delete('/api/delete/:id', id)
-			.then(({ data }) => {
-				return (
-					data ? alert(' product deleted successfully'):alert(' product can not be deleted !'));
-			}).then(() => {
-				this.setState({
-					view: 'pageHome'
-				})
-			}).catch((err) => {
-				console.log(err)
-			})}
+	handleDelete(index) {
 
+		axios.delete('/api/delete/' + index)
+			.then(({ data }) => (
+				console.log(data)
+			))
+			.catch((err) => {
+				console.log(err)
+			})
+	}
 
 	changeView(view) {
 		this.setState({
@@ -155,10 +165,8 @@ this.setState({
 
 
 	renderView() {
-
 		const { page, product, allProducts, currentproduct, inputValue} = this.state;
 		if (page === 'pageAll') { return <Productlist product={product} allProducts={allProducts} currentproductUpdate={this.currentproductUpdate} changeView={this.changeView} productFilter={this.productFilter} inputValue={inputValue} /> }
-
 		else if (page === 'pageCreate') {
 			return <Create handleChange={this.handleChange} submitChange={this.submitChange} />
 		} else if (page === 'pageUpdate') { return <Update currentproduct={currentproduct} handleChange={this.handleChange} handleUpdate={this.handleUpdate} currentproductUpdate={this.currentproductUpdate} /> }
@@ -173,26 +181,25 @@ this.setState({
 		return (
 			<div>
 				<div className='nav'>
-					<br />
-					<div>
-						<strong>	<span className='logo'>  Stock Zero </span>  </strong> 
-					</div>
-					<br />
+					<span className='logo'>3M Project</span>
 					<button className={this.state.page === 'pageAll'
 						? 'nav-selected'
 						: 'nav-unselected'}
 						onClick={() => this.componentDidMount()}>
-						The Product List
+						see all  product
 					</button>
-					<br />
 					<button className={this.state.page === 'pageCreate'
 						? 'nav-selected'
 						: 'nav-unselected'}
 						onClick={() => this.changeView('pageCreate')}>
-						Add a new product
+						Add a  product
 					</button>
-
-
+					<button className={this.state.view === 'pageUpdate'
+						? 'nav-selected'
+						: 'nav-unselected'}
+						onClick={() => this.changeView('pageUpdate')}>
+						Update a   product
+					</button>
 
 				</div>
 				<div className="main">
