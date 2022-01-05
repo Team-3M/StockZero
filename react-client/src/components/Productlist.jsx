@@ -3,13 +3,10 @@ import moment from 'moment'
 import Product from './Product.jsx'
 
 
-const Productlist = ({ allProducts, currentproductUpdate, changeView,productFilter,inputValue }) => (
+const Productlist = ({ allProducts, currentproductUpdate, changeView,productFilter,inputValue,handleAlert }) => (
 
 		<div>
 			<input type="text"  onChange={productFilter} />
-
-
-
 
 		<h4> The  List of all the Products </h4>
 
@@ -36,10 +33,6 @@ const Productlist = ({ allProducts, currentproductUpdate, changeView,productFilt
 
 					}).map((product, item) => {
 						return (
-
-
-
-
 							<tr key={item} onClick={()=>{currentproductUpdate(product)}}>
 								<th>{product.name}</th>
 								<th>{product.type}</th>
@@ -52,11 +45,8 @@ const Productlist = ({ allProducts, currentproductUpdate, changeView,productFilt
 							</tr>
 						)
 					})}
-
-
 				</tbody>
 			</table>
-
 		</div>
 	</div>
 )

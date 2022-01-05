@@ -7,12 +7,8 @@ import axios from 'axios'
 import Productlist from './components/Productlist.jsx'
 import Create from './components/Create.jsx'
 import Update from './components/Update.jsx'
-import Homepage from './components/Homepage.jsx'
 import Product from './components/Product.jsx';
-
-
-
-
+import Alert from './components/Alert.jsx';
 
 class App extends React.Component {
 	constructor() {
@@ -29,8 +25,8 @@ class App extends React.Component {
 			note: '',
 
 			currentproduct: {},
-			inputValue: ''
-
+			inputValue: '',
+			alertproducts: [],
 		}
 
 
@@ -40,11 +36,9 @@ class App extends React.Component {
 		this.submitChange = this.submitChange.bind(this)
 		this.currentproductUpdate = this.currentproductUpdate.bind(this)
 		this.handleUpdate = this.handleUpdate.bind(this)
-
 		this.handleDelete = this.handleDelete.bind(this)
 		this.productFilter = this.productFilter.bind(this)
-
-
+		this.handleAlert = this.handleAlert.bind(this)
 	}
 	componentDidMount() {
 		this.setState({
@@ -60,17 +54,13 @@ class App extends React.Component {
 	}
 
 	productFilter(event) {
-
 		this.setState({
 			inputValue: event.target.value
-
 		})
-
 	}
 
 
 	handleChange(e) {
-
 		this.setState({
 			[e.target.name]: e.target.value
 		});
@@ -86,9 +76,6 @@ class App extends React.Component {
 			.catch((e) => {
 				console.log(e)
 			})
-
-
-
 
 	}
 
@@ -131,10 +118,6 @@ class App extends React.Component {
 		product.inventory = this.state.inventory;
 		product.note = this.state.note;
 
-		if (!product.name || !product.type || !product.price || !product.inventory) {
-			alert("please fill all fields")
-		}
-		else
 			axios.put('/api/update/' + product.id, product)
 				.then(({ data }) => {
 					this.setState({
@@ -148,7 +131,6 @@ class App extends React.Component {
 	};
 
 	handleDelete(index) {
-
 		axios.delete('/api/delete/' + index)
 			.then(({ data }) => (
 				console.log(data)
@@ -156,62 +138,75 @@ class App extends React.Component {
 			.catch((err) => {
 				console.log(err)
 			})
-			this.componentDidMount()
+		this.componentDidMount()
 	}
 
 	changeView(view) {
 		this.setState({
 			page: view
 		})
-	}
+	};
 
-
-
-	renderView() {
-
-		const { page, product, allProducts, currentproduct, inputValue } = this.state;
-		if (page === 'pageAll') { return <Productlist product={product} allProducts={allProducts} currentproductUpdate={this.currentproductUpdate} changeView={this.changeView} productFilter={this.productFilter} inputValue={inputValue} /> }
+	handleAlert() {
+		if( Product.inventory < 2 ){ 
+		this.state.allProducts.map(( product) => {   			
+                   this.setState({
+						  alertproducts : alertproducts.push(product)
+					  })
+					})}}
+			
+        renderView() {
+		const { page, product, allProducts, currentproduct, inputValue,alertproducts} = this.state;
+		if (page === 'pageAll') { return <Productlist product={product} allProducts={allProducts} 
+		currentproductUpdate={this.currentproductUpdate} changeView={this.changeView}
+		 productFilter={this.productFilter} inputValue={inputValue} handleAlert={this.handleAlert} /> }
 
 		else if (page === 'pageCreate') {
 			return <Create handleChange={this.handleChange} submitChange={this.submitChange} />
-		} else if (page === 'pageUpdate') { return <Update currentproduct={currentproduct} handleChange={this.handleChange} handleUpdate={this.handleUpdate} currentproductUpdate={this.currentproductUpdate} /> }
-		else if (page === 'pageHome') {
-			return <Homepage />
-		}
+		} else if (page === 'pageUpdate') { return <Update currentproduct={currentproduct} 
+		handleChange={this.handleChange} handleUpdate={this.handleUpdate} currentproductUpdate={this.currentproductUpdate} /> }
+		
 		else if (page === 'product') {
 			return <Product changeView={this.changeView} currentproduct={currentproduct} handleDelete={this.handleDelete} />
 		}
-	}
+		else if(page ==='pageAlert'){
+			return <Alert changeView={this.changeView} handleAlert={this.handleAlert} alertproducts={alertproducts} />
+		}
+	};
+
 	render() {
 		return (
 			<div>
 				<div className='nav'>
-					<span className='logo'>3M Project</span>
+					<span className='logo'> Stock Zero </span>
 					<button className={this.state.page === 'pageAll'
 						? 'nav-selected'
 						: 'nav-unselected'}
 						onClick={() => this.componentDidMount()}>
 						see all  product
 					</button>
+
 					<button className={this.state.page === 'pageCreate'
 						? 'nav-selected'
 						: 'nav-unselected'}
 						onClick={() => this.changeView('pageCreate')}>
 						Add a  product
 					</button>
-					
+
+					<button className={this.state.page === 'pageAlert'
+						? 'nav-selected'
+						: 'nav-unselected'}
+						onClick={() => this.changeView('pageAlert')}>
+						Shortage Alert 
+					</button>
 
 				</div>
 				<div className="main">
 					{this.renderView()}
 				</div>
 			</div>
-
-
-
 		);
 	}
 }
-
 
 ReactDOM.render(<App />, document.getElementById("Stock"));
