@@ -13,6 +13,7 @@ import Product from './components/Product.jsx';
 
 
 
+
 class App extends React.Component {
 	constructor() {
 		super();
@@ -26,7 +27,10 @@ class App extends React.Component {
 			price: 0,
 			inventory: 0,
 			note: '',
-			currentproduct: {}
+
+			currentproduct: {},
+			inputValue: ''
+
 		}
 
 
@@ -36,6 +40,9 @@ class App extends React.Component {
 		this.submitChange = this.submitChange.bind(this)
 		this.currentproductUpdate = this.currentproductUpdate.bind(this)
 		this.handleUpdate = this.handleUpdate.bind(this)
+
+		this.handleDelete = this.handleDelete.bind(this)
+		this.productFilter = this.productFilter.bind(this)
 
 
 	}
@@ -49,7 +56,18 @@ class App extends React.Component {
 				allProducts: data
 			})
 		})
+
 	}
+
+	productFilter(event) {
+
+		this.setState({
+			inputValue: event.target.value
+
+		})
+
+	}
+
 
 	handleChange(e) {
 
@@ -60,17 +78,35 @@ class App extends React.Component {
 
 	}
 
+	handleDelete(index) {
+		axios.delete("/api/delete/:id" + index)
+			.then(({ data }) => {
+				console.log(data)
+			})
+			.catch((e) => {
+				console.log(e)
+			})
+
+
+
+
+	}
+
+
+
 
 
 	submitChange() {
 		const { id, name, type, price, inventory, note } = this.state;
+		var l = this.state.allProducts.length - 1;
+
 		if (name && type && price && inventory) {
 			this.setState({
-				id: id + 1
+				id: l + 1
 			})
 			axios.post('/api/add', { id, name, type, price, inventory, note })
 				.then(({ data }) => {
-
+					console.log(data)
 					this.setState({
 						allProducts: [...this.state.allProducts, data]
 					})
@@ -126,6 +162,7 @@ class App extends React.Component {
 			.catch((err) => {
 				console.log(err)
 			})
+			this.componentDidMount()
 	}
 
 	changeView(view) {
@@ -137,8 +174,10 @@ class App extends React.Component {
 
 
 	renderView() {
-		const { page, product, allProducts, currentproduct } = this.state;
-		if (page === 'pageAll') { return <Productlist product={product} allProducts={allProducts} currentproductUpdate={this.currentproductUpdate} changeView={this.changeView} /> }
+
+		const { page, product, allProducts, currentproduct, inputValue } = this.state;
+		if (page === 'pageAll') { return <Productlist product={product} allProducts={allProducts} currentproductUpdate={this.currentproductUpdate} changeView={this.changeView} productFilter={this.productFilter} inputValue={inputValue} /> }
+
 		else if (page === 'pageCreate') {
 			return <Create handleChange={this.handleChange} submitChange={this.submitChange} />
 		} else if (page === 'pageUpdate') { return <Update currentproduct={currentproduct} handleChange={this.handleChange} handleUpdate={this.handleUpdate} currentproductUpdate={this.currentproductUpdate} /> }
@@ -166,14 +205,7 @@ class App extends React.Component {
 						onClick={() => this.changeView('pageCreate')}>
 						Add a  product
 					</button>
-					<button className={this.state.view === 'pageUpdate'
-						? 'nav-selected'
-						: 'nav-unselected'}
-						onClick={() => this.changeView('pageUpdate')}>
-						Update a   product
-					</button>
-					<input type="text" id="search" placeholder='enter the name of the product' />
-
+					
 
 				</div>
 				<div className="main">
