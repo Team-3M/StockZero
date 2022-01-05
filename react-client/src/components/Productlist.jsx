@@ -4,10 +4,10 @@ import Product from './Product.jsx'
 
 
 const Productlist = ({ allProducts, currentproductUpdate, changeView,productFilter,inputValue }) => (
-	
+
 		<div>
 			<input type="text"  onChange={productFilter} />
-			
+
 
 
 
@@ -33,12 +33,12 @@ const Productlist = ({ allProducts, currentproductUpdate, changeView,productFilt
 
 					{allProducts.filter((x)=>{
 					return 	x.name.toLowerCase().includes(inputValue.toLowerCase())
-					
+
 					}).map((product, item) => {
 						return (
-							
 
-					
+
+
 
 							<tr key={item} onClick={()=>{currentproductUpdate(product)}}>
 								<th>{product.name}</th>
