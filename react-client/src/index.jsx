@@ -117,11 +117,11 @@ class App extends React.Component {
 				})
 	};
 
-	handleDelete(name) {
-		axios.delete('/api/delete/:name', name)
+	handleDelete(id) {
+		axios.delete('/api/delete/:id', id)
 			.then(({ data }) => {
 				return (
-					data ? alert(' product deleted successfully'):alert(' product not deleted successfully'));
+					data ? alert(' product deleted successfully'):alert(' product can not be deleted !'));
 			}).then(() => {
 				this.setState({
 					view: 'pageHome'
