@@ -27,10 +27,8 @@ class App extends React.Component {
 			price: 0,
 			inventory: 0,
 			note: '',
-
 			currentproduct: {},
 			inputValue:''
-
 		}
 
 
@@ -40,10 +38,10 @@ class App extends React.Component {
 		this.submitChange = this.submitChange.bind(this)
 		this.currentproductUpdate = this.currentproductUpdate.bind(this)
 		this.handleUpdate = this.handleUpdate.bind(this)
-
-		this.handleDelete=this.handleDelete.bind(this)
+		this.handelDelete=this.handelDelete.bind(this)
 		this.productFilter=this.productFilter.bind(this)
 		
+
 
 	}
 	componentDidMount() {
@@ -56,7 +54,6 @@ class App extends React.Component {
 				allProducts: data
 			})
 		})
-
 	}
     
     productFilter (event){
@@ -78,7 +75,7 @@ this.setState({
 
 	}
 
-	 handleDelete (index){
+	 handelDelete (index){
 		axios.delete("/api/delete/:id"+index )
 		.then(({data})=>{
 			console.log(data)
@@ -93,9 +90,6 @@ this.setState({
 	}
 
     
-
-
-
 	submitChange() {
 		const { id, name, type, price, inventory, note } = this.state;
 		if (name && type && price && inventory) {
@@ -171,10 +165,8 @@ this.setState({
 
 
 	renderView() {
-
 		const { page, product, allProducts, currentproduct, inputValue} = this.state;
 		if (page === 'pageAll') { return <Productlist product={product} allProducts={allProducts} currentproductUpdate={this.currentproductUpdate} changeView={this.changeView} productFilter={this.productFilter} inputValue={inputValue} /> }
-
 		else if (page === 'pageCreate') {
 			return <Create handleChange={this.handleChange} submitChange={this.submitChange} />
 		} else if (page === 'pageUpdate') { return <Update currentproduct={currentproduct} handleChange={this.handleChange} handleUpdate={this.handleUpdate} currentproductUpdate={this.currentproductUpdate} /> }
@@ -208,9 +200,6 @@ this.setState({
 						onClick={() => this.changeView('pageUpdate')}>
 						Update a   product
 					</button>
-
-
-
 
 				</div>
 				<div className="main">

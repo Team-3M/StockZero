@@ -1,8 +1,15 @@
 import React from 'react'
 import moment from 'moment'
 import Product from './Product.jsx'
-const Productlist = ({ allProducts, currentproductUpdate, changeView }) => (
-	<div>
+
+const Productlist = ({ allProducts, currentproductUpdate, changeView,productFilter,inputValue }) => (
+	
+		<div>
+			<input type="text"  onChange={productFilter} />
+			
+
+
+
 		<h4> list of all the product </h4>
 		<div>
 
@@ -23,8 +30,16 @@ const Productlist = ({ allProducts, currentproductUpdate, changeView }) => (
 				</thead>
 				<tbody>
 
-					{allProducts.map((product, item) => {
+
+					{allProducts.filter((x)=>{
+					return 	x.name.toLowerCase().includes(inputValue.toLowerCase())
+					
+					}).map((product, item) => {
 						return (
+							
+
+					
+
 							<tr key={item} onClick={()=>{currentproductUpdate(product)}}>
 								<th>{product.name}</th>
 								<th>{product.type}</th>
