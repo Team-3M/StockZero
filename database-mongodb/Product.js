@@ -2,14 +2,24 @@ const { Schema, model } = require('mongoose');
 const mongoose = require('mongoose');
 const db = require('./index.js');
 
-
+var d= new Date;
 const productSchema = new mongoose.Schema({
+	id:{
+		type: Number , unique: true
+	},
 	name: String,
 	type: String,
-	createdAt: Date,
-	updatedAt: Date,
-	stock: Number,
-	note: String
+	price: Number,
+	createdAt: {
+		type: Date, default: d
+	},
+	updatedAt: {
+		type: Date, default: d
+	},
+	inventory: Number,
+	note: {
+		type: String, default: ""
+	}
 }
 );
 
