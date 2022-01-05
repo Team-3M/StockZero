@@ -136,7 +136,7 @@ this.setState({
 		axios.delete('/api/delete/:id', id)
 			.then(({ data }) => {
 				return (
-					data ? alert(' product deleted successfully'):alert(' product can not be deleted !'));
+					data ?alert(' product deleted successfully'):alert(' product can not be deleted !'));
 			}).then(() => {
 				this.setState({
 					view: 'pageHome'
