@@ -19,4 +19,4 @@ productRouter
 .route('/api/delete/:id')
 .delete(productController.deleteOne)
 
-module.exports = productRouter
+module.exports = productRouter;

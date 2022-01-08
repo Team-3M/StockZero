@@ -2,23 +2,20 @@ import React from 'react'
 import moment from 'moment'
 import Product from './Product.jsx'
 
-const Productlist = ({ allProducts, currentproductUpdate, changeView,productFilter,inputValue }) => (
-	
+
+const Productlist = ({ allProducts, currentproductUpdate, changeView,productFilter,inputValue,handleAlert }) => (
+
 		<div>
 			<input type="text"  onChange={productFilter} />
-			
 
+		<h4> The  List of all the Products </h4>
 
-
-		<h4> list of all the product </h4>
 		<div>
 
 			<table className='table' width={'100%'}>
 
-
 				<thead>
 					<tr >
-
 						<th>Name</th>
 						<th>Type</th>
 						<th>Inventory</th>
@@ -33,13 +30,9 @@ const Productlist = ({ allProducts, currentproductUpdate, changeView,productFilt
 
 					{allProducts.filter((x)=>{
 					return 	x.name.toLowerCase().includes(inputValue.toLowerCase())
-					
+
 					}).map((product, item) => {
 						return (
-							
-
-					
-
 							<tr key={item} onClick={()=>{currentproductUpdate(product)}}>
 								<th>{product.name}</th>
 								<th>{product.type}</th>
@@ -48,15 +41,12 @@ const Productlist = ({ allProducts, currentproductUpdate, changeView,productFilt
 								<th>{moment(product.updatedAt).format("DD-MM-YYYY")}</th>
 								<th>{moment(product.createdAt).format("DD-MM-YYYY")}</th>
 								<th>{product.note}</th>
-								<th><button onClick={()=>changeView("product")} >Details</button></th>
+								<th><button  onClick={()=>changeView("product")} > Details </button></th>
 							</tr>
 						)
 					})}
-
-
 				</tbody>
 			</table>
-
 		</div>
 	</div>
 )

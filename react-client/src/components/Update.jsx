@@ -2,34 +2,56 @@ import React from"react";
 
 const Update =({handleChange, handleUpdate, currentproduct, currentProductupdate})=> (
 
-	<div className="create">
-		<div>{currentproduct.name}--{currentproduct.type}--{currentproduct.price}--{currentproduct.inventory}--{currentproduct.note}</div>
+	<div className="update">
+
+		<div>
+		<fieldset>	
+		<ul>
+	<li>  The current product's Name :  {currentproduct.name}   </li>
+	<br />
+	<li>   The current product's Type  :  {currentproduct.type} </li>
+	<br />
+	<li>   The current product's  Price  : {currentproduct.price}  </li>
+	<br />
+	<li>   The current product's Inventory   : {currentproduct.inventory}   </li>
+	<br />
+	<li>   The current product's  Note  :  {currentproduct.note} </li>
+	</ul>
+	</fieldset>
+	
+		</div> 
+		<br />
 	<div>
-		<label htmlFor="name">Name</label><br />
+		<label htmlFor="name"> The New Product's Name</label><br />
 		<input type="text" name='name' onChange={handleChange} required />
 	</div>
+	<br />
 	<div>
-		<label htmlFor="name">Type</label><br />
+		<label htmlFor="name"> The New Product's Type</label><br />
 		<input type="text" name='type' onChange={handleChange} required />
 	</div>
+	<br />
 	<div>
-		<label htmlFor="name">Price</label><br />
+		<label htmlFor="name"> The New Product's Price</label><br />
 		<input type="number" name='price' onChange={handleChange} required />
 	</div>
-	<div>
-		<label htmlFor="name">Inventory</label><br />
+	<br />
+	<div> 
+		<label htmlFor="name"> The New Product's Inventory</label><br />
 		<input type="number" name='inventory' onChange={handleChange} required />
 	</div>
+	<br />
 	<div>
-		<label htmlFor="name">Note</label><br />
-		<input type="text" name='note' onChange={handleChange} required />
-	</div>
+		<label htmlFor="name"> The New Product's Note </label><br />
+		<textarea type="text" name='note' onChange={handleChange} required  rows="4" cols="70">
+	   </textarea>
+	</div> 
+	<br />
 
 
-
-		<button type='submit' onClick={handleUpdate}>submit</button>
+		<button className='updateClass'  type='submit' onClick={handleUpdate}> Save to Update! </button>
 
 	</div>
 	)
 
-	export default Update
+	export default Update;

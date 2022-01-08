@@ -50,3 +50,6 @@ exports.deleteOne = function (req, res) {
 			console.log(e);
 		})
 };
+
+
+	   

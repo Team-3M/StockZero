@@ -1,3 +1,4 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
@@ -254,4 +255,4 @@ handleAlert(){
 }
 
 
-ReactDOM.render(<App />, document.getElementById("Stock"));
+
