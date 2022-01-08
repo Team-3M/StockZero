@@ -8,7 +8,7 @@ import axios from 'axios'
 import Productlist from './components/Productlist.jsx'
 import Create from './components/Create.jsx'
 import Update from './components/Update.jsx'
-import Homepage from './components/Homepage.jsx'
+
 import Product from './components/Product.jsx';
 import { head } from 'underscore';
 
