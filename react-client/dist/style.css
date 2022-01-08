@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css?family=Francois+One|PT+Serif:400,400i,700,700i');
 
 body {
@@ -8,6 +9,7 @@ body {
   font-size: 1.1em;
   background-image: url("https://disrv.com/wp-content/uploads/2016/02/Technology-Background-Image.jpg");
 }
+
 
 #table {
   font-family: Arial, Helvetica, sans-serif;
@@ -33,6 +35,12 @@ body {
   empty-cells: hide;
 }
 
+h2 {
+  color: #2C3E50;
+}
+
+
+
 tr:hover {background-color:hsl(34,57%,70%);}
 
 button {
@@ -44,6 +52,7 @@ button {
   background-color:rgb(210,180,140) ;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
+
 
 input[type=text] {
   width: 50%;
@@ -74,9 +83,11 @@ th[target] {
 btn:hover {
   opacity: 1}
 
+
 table, th, td {
   border: 1px solid black;
 };
+
 
 .header {
   font-weight: bold;
@@ -118,6 +129,7 @@ table, th, td {
 
 
 
+
 }
 
 .main {
@@ -126,8 +138,10 @@ table, th, td {
 }
 
 .nav {
+
   background-color: #6fa8dc;
   margin: 20px;
+
   padding: 10px;
   display: flex;
   align-items: center;
@@ -195,19 +209,24 @@ table, th, td {
 
 table {
 	border-collapse: collapse;
+
 	border-color: black;
 	border-style: solid;
 	border-width: 2px;
   width: 100%;
+
   }
 
   tr {
 	border-bottom: 1pt solid black;
 
 
+
 	border-right: 1pt solid black;  }
   thead{
 	  background-color: rgb(223, 136, 60);
+
+
 
   }
   thead tr th {
@@ -216,4 +235,19 @@ table {
   }
   tbody tr th {
 	border-right: #000000 2px solid;
+
   }
+  #title {
+    text-align: center;
+  }
+  #demo {
+    text-align: center;
+  }
+  #title1 {
+    text-align: center;
+  }
+  #search1 {
+    width: 100%;
+    border-radius: 15px;
+  }
+
