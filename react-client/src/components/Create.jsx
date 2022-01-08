@@ -1,14 +1,34 @@
 import React from 'react';
 
-const Create =()=> (
-	<div className="create">
-    name of the product  :<input type="text" />
-    type :<input type="text" />
-    added at :<input type="text" />
-    quantity:<input type="text" />
+
+const Create =({handleChange, submitChange})=> (
+
+<div className="create">
 <div>
-	<button>submit</button>
+	<label htmlFor="name">Name</label><br />
+	<input type="text" name='name' onChange={handleChange} required />
 </div>
+<div>
+	<label htmlFor="name">Type</label><br />
+	<input type="text" name='type' onChange={handleChange} required />
+</div>
+<div>
+	<label htmlFor="name">Price</label><br />
+	<input type="number" name='price' onChange={handleChange} required />
+</div>
+<div>
+	<label htmlFor="name">Inventory</label><br />
+	<input type="number" name='inventory' onChange={handleChange} required />
+</div>
+<div>
+	<label htmlFor="name">Note</label><br />
+	<input type="text" name='note' onChange={handleChange}  />
+</div>
+
+
+
+	<button type='submit' onClick={submitChange}>submit</button>
+
 </div>
 )
 

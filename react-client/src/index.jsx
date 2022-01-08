@@ -30,8 +30,10 @@ class App extends React.Component {
 			note: '',
 
 			currentproduct: {},
+
 			inputValue: '',
 			alertarray :[]
+
 
 		}
 
@@ -42,6 +44,7 @@ class App extends React.Component {
 		this.submitChange = this.submitChange.bind(this)
 		this.currentproductUpdate = this.currentproductUpdate.bind(this)
 		this.handleUpdate = this.handleUpdate.bind(this)
+
 
 		this.handleDelete = this.handleDelete.bind(this)
 		this.productFilter = this.productFilter.bind(this)
@@ -81,6 +84,7 @@ class App extends React.Component {
 
 	}
 
+
 	handleDelete(index) {
 		axios.delete("/api/delete/:id" + index)
 			.then(({ data }) => {
@@ -114,6 +118,7 @@ handleAlert(){
 		}
 	}
 }
+
 
 
 	submitChange() {
@@ -195,7 +200,9 @@ handleAlert(){
 
 	renderView() {
 
+
 		const { page, product, allProducts, currentproduct, inputValue } = this.state;
+
 		if (page === 'pageAll') { return <Productlist product={product} allProducts={allProducts} currentproductUpdate={this.currentproductUpdate} changeView={this.changeView} productFilter={this.productFilter} inputValue={inputValue} /> }
 
 		else if (page === 'pageCreate') {
@@ -226,6 +233,9 @@ handleAlert(){
 						Add a  product
 					</button>
 					
+
+
+
 
 				</div>
 				<div className="main">
