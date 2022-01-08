@@ -2,35 +2,122 @@
 
 body {
   font-family: 'PT Serif', sans-serif;
-  margin: 0px;
-  color: #2C3E50;
-  background-color: #ECF0F1;
+  margin: 5px;
+  color:rgb(65, 35, 4);
+  background-color:rgb(210,180,140);
   font-size: 1.1em;
+  background-image: url("https://disrv.com/wp-content/uploads/2016/02/Technology-Background-Image.jpg");
 }
 
-h2 {
-  color: #2C3E50;
+#table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
 }
 
+#table td, #table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#table tr:nth-child(even){background-color: #f2f2f2;}
+
+#table tr:hover {
+  background-color: hsl(36,100%,90%);}
+
+#table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  color: white;
+  empty-cells: hide;
+}
+
+tr:hover {background-color:hsl(34,57%,70%);}
 
 button {
   cursor: pointer;
   border: none;
-  border-radius: 3px;
-  font-family: 'PT Serif', sans-serif;
+  border-radius: 12px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   color: #ECF0F1;
-  background-color: #E74C3C;
+  background-color:rgb(210,180,140) ;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
+input[type=text] {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
 
+input {
+  width: 100%;
+}
 
-.logo {
+input[type=number] {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+th[target] {
+  background-color: grey;
+}
+
+#logo {
+  margin-right:auto;
+  
+  }
+
+btn:hover {
+  opacity: 1}
+
+table, th, td {
+  border: 1px solid black;
+};
+
+.header {
   font-weight: bold;
-  font-size: 1.9em;
-  margin-right: auto;
-  margin-left: 10px;
+  font-size: 20px;
+  float: left;
   font-family: "Francois One";
   color: black;
+  
+}
+
+.updateClass {
+  background-color:#6fa8dc;
+  border: none;
+  color: black ;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  width: 30%;
+}
+.btn{
+
+  background-color: #6fa8dc ;
+  border: none;
+  color: black ;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  width: 20%;
+
+
+
 }
 
 .main {
@@ -39,27 +126,30 @@ button {
 }
 
 .nav {
-  background-color: #0b5202;
-  margin: 0px;
+  background-color: #6fa8dc;
+  margin: 20px;
   padding: 10px;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
   font-family: 'Francois One';
+  outline-style: outset;
+  outline: thick ridge ;
+  float: center;
+  justify-content:space-between;
 }
 
 .nav-selected {
   padding: 5px;
   color: black;
   font-weight: bold;
-  margin-right: 5px;
-  font-size: 1.1em;
+  margin-right: 10px;
+  font-size: 1em;
 }
 
 .nav-unselected {
   padding: 5px;
   margin-right: 5px;
-  font-size: 1.1em;
+  font-size: 1em;
 }
 
 .feed {
@@ -72,15 +162,24 @@ button {
 }
 
 #search {
-  box-sizing:border-box;
-    display:inline;
-    width: 50%;
-    border: 3px solid currentColor;
-    padding: calc(var(--size-bezel) * 1.5) var(--size-bezel);
-    color: currentColor;
-    background: transparent;
-    border-radius: var(--size-radius)
+  width: 30%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 10px;
+  background-color: white;
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  float:right;
+ 
 }
+
+.update{ 
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  
+}
+
 #button-holder{
   background-color:#f1f1f1;
   border-top:thin solid #e5e5e5;
@@ -88,24 +187,27 @@ button {
   cursor:pointer;
   float:left;
   height:27px;
-  margin:11px 0 0 0;
+  margin: 15px;
   text-align:center;
-  width:50px;
+  width: 10px;
+  border-radius: 12px;
 }
 
 table {
 	border-collapse: collapse;
-	border-color: #000000;
+	border-color: black;
 	border-style: solid;
 	border-width: 2px;
+  width: 100%;
   }
 
   tr {
 	border-bottom: 1pt solid black;
-	border-right: 1pt solid black;
-  }
+
+
+	border-right: 1pt solid black;  }
   thead{
-	  background-color: #0b5202;
+	  background-color: rgb(223, 136, 60);
 
   }
   thead tr th {
